@@ -1,0 +1,77 @@
+                                                                          Line Graph 2 Example
+    Private Sub DrawLine2_Click(sender As Object, e As EventArgs) Handles DrawLine2.Click
+        Dim tg As New TestGraph
+        tg.ClearGraphics()
+        tg.SetViewportScale(100, 0, TestGraph.ScaleStyleChoices.Linear, 50, 0, TestGraph.ScaleStyleChoices.Linear)
+        tg.GraphStyle = TestGraph.GraphStyleChoices.PointToPoint
+        tg.RandomHatchStyles = True
+        'Control Font Used For HeaderText, XAxisText And YAxisText
+        tg.Font = New Font("Times New Roman", 22, FontStyle.Bold Or FontStyle.Italic)
+        tg.HeaderText = "Point To Point Graph Style Example"
+        tg.XAxisText = "Graph X-Axis"
+        tg.YAxisText = "Graph Y-Axis"
+        tg.ShowMousePosition = True
+        tg.GraphBackColor = Color.LightGray
+        tg.GraphForeColor = Color.DarkRed
+        tg.GraphFillColor = Color.Black
+        tg.GridLineColor = Color.DimGray
+        tg.NumOfXGridLines = 10
+        '*******X=Axis*******
+        tg.ShowXLabels = True
+        tg.ShowXGridLines = True
+        tg.RotateXGridLabels = 0
+        tg.ShowCustomXLabels = False
+        '*******Y=Axis*******
+        tg.ShowYGridLines = True
+        tg.ShowYLabels = True
+        tg.RotateYGridLabels = 0
+        tg.ShowCustomYLabels = False
+        tg.NumOfYGridLines = 10
+        'Populate GridLabelFont With Font And Color For Grid Line Labeling
+        tg.GridLabelColor = Color.Black
+        tg.GridLabelFont = New Font("Times New Roman", 9, FontStyle.Regular)
+        Dim Dash_Pattern1 As Single() = {3, 2, 3, 2}
+        Dim DrawPen1 As New Pen(Color.Red)
+        With DrawPen1
+            .Width = 1
+            .DashCap = Drawing2D.DashCap.Triangle
+            .DashPattern = Dash_Pattern1
+        End With
+        tg.DrawLine(DrawPen1, 0, 0, 50, 25)
+        Refresh()
+        '**************************************************
+        Dim Dash_Pattern2 As Single() = {4, 2, 4, 2}
+        Dim DrawPen2 As New Pen(Color.Blue)
+        With DrawPen2
+            .Width = 1.5
+            .DashCap = Drawing2D.DashCap.Round
+            .DashPattern = Dash_Pattern2
+        End With
+        tg.DrawLine(DrawPen2, 50, 25, 100, 50)
+        Refresh()
+        '**************************************************
+        Dim Dash_Pattern3 As Single() = {3, 1, 3, 1}
+        Dim DrawPen3 As New Pen(Color.Aqua, 2)
+        With DrawPen3
+            .Width = 2
+            .DashCap = Drawing2D.DashCap.Triangle
+            .DashPattern = Dash_Pattern3
+        End With
+        tg.DrawLine(DrawPen3, 0, 50, 50, 25)
+        Refresh()
+        '**************************************************
+        Dim Dash_Pattern4 As Single() = {2, 1, 2, 1}
+        Dim DrawPen4 As New Pen(Color.Gold, 2)
+        With DrawPen4
+            .Width = 2.5
+            .DashCap = Drawing2D.DashCap.Flat
+            .DashPattern = Dash_Pattern4
+        End With
+        tg.DrawLine(DrawPen4, 50, 25, 100, 0)
+        Refresh()
+        'Do Not Dispose Of Brushes Or Pens Before Refresh().
+        DrawPen1.Dispose()
+        DrawPen2.Dispose()
+        DrawPen3.Dispose()
+        DrawPen4.Dispose()
+    End Sub

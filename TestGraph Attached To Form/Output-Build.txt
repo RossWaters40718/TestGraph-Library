@@ -1,0 +1,4 @@
+﻿Rebuild started...
+1>------ Rebuild All started: Project: TestGraphAttachedToForm, Configuration: Debug Any CPU ------
+1>  TestGraphAttachedToForm -> C:\Users\Ross\source\repos\TestGraph Attached To Form\bin\Debug\TestAppForTestGraph.exe
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========

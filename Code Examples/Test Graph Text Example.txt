@@ -1,0 +1,97 @@
+					Text Example
+
+    Private Sub TextExample_Click(sender As Object, e As EventArgs) Handles TextExample.Click
+        Dim tg As New TestGraph
+        tg.ClearGraphics()
+        'Control Font Used For HeaderText, XAxisText And YAxisText
+        tg.Font = New Font("Times New Roman", 20, FontStyle.Bold Or FontStyle.Italic)
+        tg.HeaderText = "DrawString Example With Different StringFormats And Rotated Text "
+        tg.XAxisText = "X-Axis Text"
+        tg.YAxisText = "Y-Axis Text"
+        tg.SetViewportScale(0, 50, TestGraph.ScaleStyleChoices.Linear, 50, 0, TestGraph.ScaleStyleChoices.Linear)
+        tg.GraphStyle = TestGraph.GraphStyleChoices.PointToPoint
+        tg.GraphBackColor = Color.LightGray
+        tg.GraphForeColor = Color.DarkRed
+        tg.GraphFillColor = Color.Black
+        tg.GridLineColor = Color.DimGray
+        tg.ShowXGridLines = True
+        tg.NumOfXGridLines = 10
+        tg.ShowXLabels = True
+        tg.ShowYGridLines = True
+        tg.NumOfYGridLines = 5
+        tg.ShowYLabels = True
+        tg.ShowMousePosition = True
+        tg.RotateXGridLabels = 0
+        tg.RotateYGridLabels = 0
+        tg.ShowCustomXLabels = False
+        tg.ShowCustomYLabels = False
+        tg.RandomHatchStyles = False
+        'Populate GridLabelFont With Font And Color For Grid Line Labeling
+        tg.GridLabelColor = Color.Black
+        tg.GridLabelFont = New Font("Times New Roman", 9, FontStyle.Regular)
+        Dim Fonts(4) As Font
+        Dim Brushes(4) As SolidBrush
+        Dim Formats(4) As StringFormat
+        '*******************************************************************
+        Fonts(0) = New Font("Times New Roman", 14, FontStyle.Bold)
+        Brushes(0) = New SolidBrush(Color.Red)
+        Formats(0) = New StringFormat
+        With Formats(0)
+            .LineAlignment = StringAlignment.Center
+            .Alignment = StringAlignment.Center
+            .FormatFlags = StringFormatFlags.NoWrap
+        End With
+        tg.DrawString("StringFormat = Center/Center/NoWrap (X = 25,Y = 25), Font Size = 14, Rotation = 22.5 Degrees", 22.5, Fonts(0), Brushes(0), 25, 25, Formats(0))
+        Refresh()
+        '*******************************************************************
+        Fonts(1) = New Font("Times New Roman", 12, FontStyle.Bold)
+        Brushes(1) = New SolidBrush(Color.LimeGreen)
+        Formats(1) = New StringFormat
+        With Formats(1)
+            .LineAlignment = StringAlignment.Center
+            .Alignment = StringAlignment.Near
+            .FormatFlags = StringFormatFlags.NoWrap
+        End With
+        tg.DrawString("StringFormat = Center/Near/NoWrap (X = 0,Y = 10), Font Size = 12, Rotation = 0 Degrees", 0, Fonts(1), Brushes(1), 0, 10, Formats(1))
+        Refresh()
+        '*******************************************************************
+        Fonts(2) = New Font("Times New Roman", 12, FontStyle.Bold)
+        Brushes(2) = New SolidBrush(Color.Yellow)
+        Formats(2) = New StringFormat
+        With Formats(2)
+            .LineAlignment = StringAlignment.Center
+            .Alignment = StringAlignment.Far
+            .FormatFlags = StringFormatFlags.NoWrap
+        End With
+        tg.DrawString("StringFormat = Center/Far/NoWrap (X = 50,Y = 40), Font Size = 12, Rotation = 0 Degrees", 0, Fonts(2), Brushes(2), 50, 40, Formats(2))
+        Refresh()
+        '*******************************************************************
+        Fonts(3) = New Font("Times New Roman", 9, FontStyle.Bold)
+        Brushes(3) = New SolidBrush(Color.Aqua)
+        Formats(3) = New StringFormat
+        With Formats(3)
+            .LineAlignment = StringAlignment.Center
+            .Alignment = StringAlignment.Far
+            .FormatFlags = StringFormatFlags.NoWrap
+        End With
+        tg.DrawString("X = 7, Y = 40, Rotation = -65 Degrees", -65, Fonts(3), Brushes(3), 7, 40, Formats(3))
+        Refresh()
+        '*******************************************************************
+        Fonts(4) = New Font("Times New Roman", 9, FontStyle.Bold)
+        Brushes(4) = New SolidBrush(Color.White)
+        Formats(4) = New StringFormat
+        With Formats(4)
+            .LineAlignment = StringAlignment.Center
+            .Alignment = StringAlignment.Far
+            .FormatFlags = StringFormatFlags.NoWrap
+        End With
+        tg.DrawString("X = 50, Y = 39, Rotation = -65 Degrees", -65, Fonts(4), Brushes(4), 50, 39, Formats(4))
+        Refresh()
+        '*******************************************************************
+        For d = 0 To Brushes.Length - 1
+            Fonts(d).Dispose()
+            Brushes(d).Dispose()
+            Formats(d).Dispose()
+        Next
+    End Sub
+ 

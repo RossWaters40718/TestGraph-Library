@@ -1,0 +1,56 @@
+                   Pie Chart VB.NET Code Example
+    
+    Private Sub PieChart_Click(sender As Object, e As EventArgs) Handles PieChart.Click
+        Dim tg As New TestGraph
+        tg.ClearGraphics()
+        'All Graph Properties Are Automatically Setup For This Method.
+        'Graph Options Available Are All Color Options, Font Family And Style, HeaderText And XAxisText.
+        tg.GraphFillColor = Color.DimGray
+        tg.GraphForeColor = Color.Black 'Sets The HeaderText And XAxisText Forecolors  
+        tg.GraphBackColor = Color.LightGray
+        tg.GraphStyle = TestGraph.GraphStyleChoices.Pie
+        'Control Font Used For HeaderText, XAxisText And YAxisText
+        tg.Font = New Font("Times New Roman", 22, FontStyle.Bold Or FontStyle.Italic)
+        tg.HeaderText = "Pie Chart Example"
+        tg.XAxisText = "My Company Output / Countries"
+        tg.YAxisText = ""
+        'Populate An Array With Pie Percentages
+        'Summation Must Not Be > 100%
+        Dim PiePercent(4) As Single
+        PiePercent(0) = 14.8
+        PiePercent(1) = 15.2
+        PiePercent(2) = 29.7
+        PiePercent(3) = 14.8
+        PiePercent(4) = 25.3
+        'Populate A SolidBrush Array With Solid Brushes
+        Dim PieBrush(UBound(PiePercent)) As SolidBrush
+        PieBrush(0) = New SolidBrush(Color.DarkRed)
+        PieBrush(1) = New SolidBrush(Color.LimeGreen)
+        PieBrush(2) = New SolidBrush(Color.DarkOrange)
+        PieBrush(3) = New SolidBrush(Color.Yellow)
+        PieBrush(4) = New SolidBrush(Color.Aqua)
+        'Populate A String Array With Pie Labels
+        Dim PieLabel(UBound(PiePercent)) As String
+        PieLabel(0) = "Bangkok Factory Output = " & PiePercent(0) & "%"
+        PieLabel(1) = "Vietnam Factory Output = " & PiePercent(1) & "%"
+        PieLabel(2) = "China Factory Output = " & PiePercent(2) & "%"
+        PieLabel(3) = "Malaysia Factory Output = " & PiePercent(3) & "%"
+        PieLabel(4) = "U.S.A. Factory Output = " & PiePercent(4) & "%"
+        'Populate StringFont To Use For The Labels
+        Dim StringFont As New Font("Times New Roman", 16, FontStyle.Regular)
+        Dim Index As Integer
+        Dim RunningTotal As Single
+        For Index = 0 To UBound(PiePercent)
+            'Most Graph Properties Are Automatically Setup For This Method Including Scale.
+            tg.DrawPieChart(PieBrush(Index), StringFont, PiePercent(Index), PieLabel(Index))
+            RunningTotal += PiePercent(Index)
+            'Summation Must Not Be > 100%
+            If RunningTotal >= 100 Then Exit For
+        Next
+        Refresh()
+        StringFont.Dispose()
+        Dim br As Brush
+        For Each br In PieBrush
+            br.Dispose()
+        Next
+    End Sub

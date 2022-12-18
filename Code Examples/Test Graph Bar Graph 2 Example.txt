@@ -1,0 +1,51 @@
+                        TestGraph Bar Graph 2 Example    
+
+    Private Sub BarGraph2_Click(sender As Object, e As EventArgs) Handles BarGraph2.Click
+        Dim tg As New TestGraph
+        tg.ClearGraphics()
+        'Control Font Used For HeaderText, XAxisText And YAxisText
+        tg.Font = New Font("Times New Roman", 22, FontStyle.Bold Or FontStyle.Italic)
+        tg.HeaderText = " X Axis Log(10) Bar Graph With HatchStyle = Wave"
+        tg.XAxisText = "Frequency (Hz)"
+        tg.YAxisText = "Amplitude (dB)"
+        tg.SetViewportScale(20, 20000, TestGraph.ScaleStyleChoices.Log10, 10, -10, TestGraph.ScaleStyleChoices.Linear)
+        tg.GraphBackColor = Color.LightGray
+        tg.GraphForeColor = Color.DarkRed
+        tg.GraphFillColor = Color.Black
+        tg.GridLineColor = Color.DimGray
+        tg.NumOfYGridLines = 10
+        tg.ShowMousePosition = True
+        tg.ShowXLabels = True
+        tg.ShowYLabels = True
+        tg.ShowXGridLines = True
+        tg.ShowYGridLines = True
+        tg.RotateXGridLabels = 0
+        tg.RotateYGridLabels = 0
+        tg.ShowCustomXLabels = False
+        tg.ShowCustomYLabels = False
+        'Populate GridLabelFont With Font And Color For Grid Line Labeling
+        tg.GridLabelColor = Color.Black
+        tg.GridLabelFont = New Font("Times New Roman", 9, FontStyle.Regular)
+        'Set Color For Grid Lines
+        tg.GridLineColor = Color.LightGray
+        'Set The Graph To Display Bar Style With HatchStyle
+        tg.GraphStyle = TestGraph.GraphStyleChoices.Bar
+        tg.RandomHatchStyles = False
+        Dim hBrush As New HatchBrush(HatchStyle.Wave, Color.Aqua, Color.White)
+        'Generate 100 Log Test Pattern Frequencies
+        Dim Frequency() As Single = tg.GenerateLogTestPoints(tg.XScaleStyle, 20, 20000, 100)
+        Dim Amplitude(UBound(Frequency)) As Single
+        Dim Pt As Integer
+        'Generate 100 Random amplitudes Between @ -10 To 10
+        For Pt = 0 To UBound(Amplitude, 1)
+            Randomize()
+            Amplitude(Pt) = Math.Floor((10 - -10 + 1) * Rnd()) + -10
+        Next
+        Dim LinePen As New Pen(Color.Aqua, 0)
+        For Pt = 0 To UBound(Frequency) - 1
+            If Pt > 0 Then tg.DrawLine(LinePen, Frequency(Pt - 1), Amplitude(Pt - 1), Frequency(Pt), Amplitude(Pt), hBrush)
+        Next
+        Refresh()
+        hBrush.Dispose()
+        LinePen.Dispose()
+    End Sub

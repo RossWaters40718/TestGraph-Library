@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestGraphControl", "TestGraphControl.vbproj", "{7D9B6123-BF69-41C3-84A7-25E19D0E14AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D9B6123-BF69-41C3-84A7-25E19D0E14AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D9B6123-BF69-41C3-84A7-25E19D0E14AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D9B6123-BF69-41C3-84A7-25E19D0E14AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D9B6123-BF69-41C3-84A7-25E19D0E14AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51F523DD-DFD8-4226-B3D4-5A680B854372}
+	EndGlobalSection
+EndGlobal

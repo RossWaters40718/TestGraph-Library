@@ -1,0 +1,67 @@
+                  TestGraph User Interface Properties And Methods
+
+'Below Are The Properties And Methods Available For Use With TestGraph
+'Along With The Standard UserControl Properties Not Shown.    
+Public Interface IGraphInterface
+        'These Are The User Defined Drawing Area "Viewport" Bounds Of The Control. 
+        Property ScaleX_Left As Single
+        Property ScaleX_Right As Single
+        Property ScaleY_Bottom As Single
+        Property ScaleY_Top As Single
+        'These Are Read Only Outer Bounds Of The Control.
+        ReadOnly Property ControlLeft As Single
+        ReadOnly Property ControlRight As Single
+        ReadOnly Property ControlTop As Single
+        ReadOnly Property ControlBottom As Single
+        ReadOnly Property ControlWidth As Single
+        ReadOnly Property ControlHeight As Single
+        'Standard Labeling Outside The The Viewport.
+        'These 3 Object Use The Standard Control Font.
+        Property HeaderText As String
+        Property XAxisText As String
+        Property YAxisText As String 
+        'These Are Scale Styles For X And Y Axis.
+        Property XScaleStyle As ScaleStyleChoices
+        Property YScaleStyle As ScaleStyleChoices
+        Enum ScaleStyleChoices
+            [Linear] = 0
+            [Log2] = 2
+            [Loge] = Math.E
+            [Log10] = 10
+            [Log20] = 20
+        End Enum
+        Property GraphBackColor As Color 'Defines The Control Color Outside The Viewport.
+        Property GraphForeColor As Color 'Defines The Text Color For HeaderText, XAxisText And YAxisText.
+        Property GraphFillColor As Color 'Defines The Fill Color Inside The Viewport Area.
+        Property GridLineColor As Color 'Defines The Color For The X And Y Axis Grid Lines.
+        Property GridLabelColor As 'Defines The Font Color For The X And Y Axis Grid Labels.
+        Property RandomHatchStyle As Boolean 'Turns On Or Off Randomize HatchStyles For Bar Style Graph.
+        Property GraphStyle As GraphStyleChoices
+        Enum GraphStyleChoices
+            [PointToPoint] = 0
+            [Bar] = 1
+            [Pie] = 2
+        End Enum
+        Property NumOfXGridLines As Integer 'Maximum Is 25 Lines. If Not Stated Then Automatically Determined.
+        Property NumOfYGridLinesAs Integer 'Maximum Is 25 Lines. If Not Stated Then Automatically Determined.
+        Property ShowMousePosition As Boolean
+        Property ShowXLabels As Boolean
+        Property ShowCustomXLabels As Boolean
+        Property ShowYLabels As Boolean
+        Property ShowCustomYLabels As Boolean
+        Property ShowXGridLines As Boolean
+        Property ShowYGridLines As Boolean
+        Property RotateXGridLabels As Single 'Rotates X Labels From -90 To 90 Degrees.
+        Property RotateYGridLabels As Single 'Rotates Y Labels From -90 To 90 Degrees.
+        Property Font As Font 'Actual Control Font Used For HeaderText And XAxisText.
+        Property GridLabelFont As Font 'Font Used For Labeling Grid Lines.
+
+        Sub ResetGraph() 'Resets All Properties To A Default State.
+        Sub ClearGraphics() 'Redimensions All Arrays To Zero And Garbage Disposal.
+        Sub DrawCustomXGrid_Labels(LabelCollection As Array) 'Memory Storage For Custom Labeling.
+        Sub DrawCustomYGrid_Labels(LabelCollection As Array) 'Memory Storage For Custom Labeling
+        Sub SetViewportScale(xLeft As Single, xRight As Single, xStyle As ScaleStyleChoices, yTop As Single, yBottom As Single, yStyle As ScaleStyleChoices)
+        Sub DrawLine(DrawPen As Pen, x1 As Single, y1 As Single, x2 As Single, y2 As Single, Optional hBrush As HatchBrush = Nothing)
+        Function GenerateLogTestPoints(LogBase As Single, StartPoint As Single, EndPoint As Single, NumOfPoints As Integer) As Single()
+        Sub DrawString(Text As String, TextRotation As Single, myFont As Font, myBrush As SolidBrush, PointX As Single, PointY As Single, AlignFormat As StringFormat)
+        Sub DrawPieChart(PieBrush As SolidBrush, PieFont As Font, PiePercent As Single, PieLabels As String)

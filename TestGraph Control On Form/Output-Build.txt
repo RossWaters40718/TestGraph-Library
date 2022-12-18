@@ -1,0 +1,5 @@
+﻿Rebuild started...
+1>------ Rebuild All started: Project: TestGraphdllOnForm, Configuration: Debug Any CPU ------
+1>  TestGraphdllOnForm -> C:\TestGraph Libary\TestGraph DLL On Form\bin\Debug\WindowsApp1.exe
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
+========== Elapsed 00:00.369 ==========

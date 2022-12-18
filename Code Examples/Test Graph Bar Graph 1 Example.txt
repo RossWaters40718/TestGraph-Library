@@ -1,0 +1,90 @@
+                    TestGraph Bar Graph 1 Example
+
+    Private Sub BarGraph1Example_Click(sender As Object, e As EventArgs) Handles BarGraph1Example.Click
+        Dim tg As New TestGraph
+        tg.ClearGraphics()
+        tg.ShowMousePosition = False
+        tg.ShowXGridLines = True
+        tg.ShowYGridLines = True
+        tg.ShowYLabels = True
+        tg.RotateXGridLabels = -15
+        tg.RotateYGridLabels = -45
+        'Control Font Used For HeaderText, XAxisText And YAxisText
+        tg.Font = New Font("Times New Roman", 20, FontStyle.Bold Or FontStyle.Italic)
+        tg.HeaderText = "Linear Bar Graph With Random Hatch Styles And Custom Labeling"
+        tg.XAxisText = "Months Of 2021"
+        tg.YAxisText = "Sales Projection"
+        'Imuns Must Be Referenced Using Control Name 
+        tg.GraphStyle = TestGraph.GraphStyleChoices.Bar
+        tg.GraphBackColor = Color.DimGray
+        tg.GraphForeColor = Color.Khaki
+        tg.GraphFillColor = Color.Black
+        tg.GridLineColor = Color.LightGray
+        tg.SetViewportScale(0, 12, TestGraph.ScaleStyleChoices.Linear, 30, 0, TestGraph.ScaleStyleChoices.Linear)
+        '******How To Display Custom Labels Along X Grid*******
+        'XScaleStyle Has To Be Set To Linear
+        'This Method Is Not Available For Log Functions
+        tg.NumOfXGridLines = 12
+        tg.ShowCustomXLabels = True
+        'Index Custom Labels Array With NumOfXGridLines
+        Dim ArrayOfLabels(tg.NumOfXGridLines)
+        'Populate A String Array With Custom X Grid Line Labels
+        ArrayOfLabels(0) = "Sales For January"
+        ArrayOfLabels(1) = "Sales For February"
+        ArrayOfLabels(2) = "Sales For March"
+        ArrayOfLabels(3) = "Sales For April"
+        ArrayOfLabels(4) = "Sales For May"
+        ArrayOfLabels(5) = "Sales For June"
+        ArrayOfLabels(6) = "Sales For July"
+        ArrayOfLabels(7) = "Sales For August"
+        ArrayOfLabels(8) = "Sales For September"
+        ArrayOfLabels(9) = "Sales For October"
+        ArrayOfLabels(10) = "Sales For November"
+        ArrayOfLabels(11) = "Sales For December"
+        'Call The Method
+        'This Method Is Not Available For X Log Functions
+        'This Method Automatically Sets ShowXLabels = True) And (ShowCustomXLabels = True)
+        'Just Incase It Is Forgotten
+        'Sent Array To Be Used For X-Axis Labels Instead Of Standard Labels
+        tg.DrawCustomXGrid_Labels(ArrayOfLabels)
+        'Next Do The Same For Custom Y-Axis Grid Labels
+        tg.ShowCustomYLabels = True
+        tg.NumOfYGridLines = 6
+        'Index Custom Labels Array With NumOfYGridLines
+        ReDim ArrayOfLabels(0)
+        ReDim Preserve ArrayOfLabels(tg.NumOfYGridLines)
+        'Populate A String Array With Custom Y Grid Line Labels
+        'Set First Y-Axis Label To Null Due To Overlapping Angles
+        ArrayOfLabels(0) = ""
+        ArrayOfLabels(1) = "Projection 1"
+        ArrayOfLabels(2) = "Projection 2"
+        ArrayOfLabels(3) = "Projection 3"
+        ArrayOfLabels(4) = "Projection 4"
+        ArrayOfLabels(5) = "Projection 5"
+        'Call The Method
+        'This Method Is Not Available For Y Log Functions
+        'This Method Automatically Sets ShowYLabels = True) And (ShowCustomYLabels = True)
+        'Just Incase It Is Forgotten
+        'Sent Array To Be Used For Y-Axis Labels Instead Of Standard Labels
+        tg.DrawCustomYGrid_Labels(ArrayOfLabels)
+        '**************************************************************
+        'Populate GridLabelFont With Font And Color For Grid Line Labeling
+        tg.GridLabelColor = Color.Aqua
+        tg.GridLabelFont = New Font("Times New Roman", 9, FontStyle.Regular)
+        'Create New Pen For Grid Lines
+        tg.GridLineColor = Color.White
+        'Also Use GridLine Color FOR Line Data Color
+        Dim GridLinePen As New Pen(tg.GridLineColor, 0)
+        Dim Month As Integer
+        'Create The Random Bar Patterns And Lable Each With Month Data
+        'HatchStyles = Ramdon
+        tg.RandomHatchStyles = True
+        For Month = 0 To 11
+            Dim Y1 As Integer = CInt(Math.Floor((29 - 1 + 1) * Rnd())) + 1
+            Dim Y2 As Integer = Y1
+            tg.DrawLine(GridLinePen, Month, Y1, Month + 1, Y2)
+	     Refresh()
+        Next
+        GridLinePen.Dispose()
+    End Sub
+
